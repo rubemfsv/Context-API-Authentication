@@ -9,18 +9,18 @@ interface User {
 }
 
 interface AuthContextData {
-    signed: boolean;
+    loged: boolean;
     user: User | null;
     loading: boolean;
-    signIn(): Promise<void>;
-    signOut(): void;
+    logIn(): Promise<void>;
+    logOut(): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
     const [user, setUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function loadStorageData() {
@@ -40,8 +40,8 @@ export const AuthProvider: React.FC = ({ children }) => {
         loadStorageData();
     }, []);
 
-    async function signIn() {
-        const response = await auth.signIn();
+    async function logIn() {
+        const response = await auth.logIn();
 
         setUser(response.user);
 
@@ -51,14 +51,14 @@ export const AuthProvider: React.FC = ({ children }) => {
         await AsyncStorage.setItem('@RNAuth:token', response.token);
     }
 
-    function signOut() {
+    function logOut() {
         AsyncStorage.clear().then(() => {
             setUser(null);
         })
     }
 
     return (
-        <AuthContext.Provider value={{ signed: Boolean(user), user, loading, signIn, signOut }}>
+        <AuthContext.Provider value={{ loged: Boolean(user), user, loading, logIn, logOut }}>
             {children}
         </AuthContext.Provider>
     );

@@ -16,6 +16,7 @@ const AppRoutes: React.FC = () => (
                   backgroundColor: '#f4511e',
                 },
                 headerTintColor: '#fff',
+                headerTitleAlign: 'center',
                 headerTitleStyle: {
                   fontWeight: 'bold',
                   alignItems: 'center',

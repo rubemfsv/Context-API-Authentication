@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 });
 
 const Routes: React.FC = () => {
-  const { signed, loading } = useAuth();
+  const { loged, loading } = useAuth();
   
   if(loading) {
     return(
@@ -25,7 +25,7 @@ const Routes: React.FC = () => {
     );
   }
   
-  return signed ? <AppRoutes /> : <AuthRoutes />;
+  return loged ? <AppRoutes /> : <AuthRoutes />;
 }
 
 export default Routes;
