@@ -9,3 +9,9 @@ This is a very simple authentication project in React Native to study how contex
 * AsyncStorage
 * React Navigation Stack
 * Hooks creation
+
+### Preview
+
+![video](assets/working.gif)
+
+<br>
